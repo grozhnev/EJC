@@ -13,6 +13,13 @@ import java.util.Scanner;
 
 /**
  * This class specify the rules of the Game and race's logic.
+ * 
+ * The Game works fine, but there are some issues in the previous business logic:
+ * 1) Previously i had a problem with a BufferedReader, where the stream was closed itself after the first iteration 
+ * in do() cycle. This bug wasn't fixed yet, cause i couldn't define the cause. So, i use Scanner instead.
+ * 
+ * 2) The secind problem, connected to Bufferedreader issue is that user's input was not defined, 
+ * so the game logic was changed to the positive balance ofgamer's bank account.
  */
 public class Game {
     private static int BET = 100;
