@@ -21,8 +21,8 @@ public class PalindromeCheck {
         String check2 = "ПОТ КАК ПОТОП";
         String check3 = "А РОЗА УПАЛА НА ЛАПУ АЗОРА";
 
-        String str;
-        StringBuilder bldr = new StringBuilder();
+        String inputString;
+        StringBuilder builder = new StringBuilder();
 
         ArrayList<String> zadanye = new ArrayList<>();
         zadanye.add(check1);
@@ -30,32 +30,32 @@ public class PalindromeCheck {
         zadanye.add(check3);
 
         for (String z: zadanye) {
-            str = z.replaceAll(" ", "");
-            bldr= bldr.append(str).reverse();
+            inputString = z.replaceAll(" ", "");
+            builder= builder.append(inputString).reverse();
 
-            if(str.equals(bldr.toString())) {
+            if(inputString.equals(builder.toString())) {
                 System.out.println("Строка \"" + z + "\" является палиндромом.");
             } else {
                 System.out.println("Строка \"" + z + "\" НЕ палиндромом.");
             }
 
-            bldr = new StringBuilder();
+            builder = new StringBuilder();
         }
 
         System.out.print("\nA теперь, проверете текст на палиндромность.");
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (true) {
                 System.out.print("\nВведите слово или строку: ");
-                str = reader.readLine().replaceAll(" ", "");
-                bldr = bldr.append(str).reverse();
+                inputString = reader.readLine().replaceAll(" ", "");
+                builder = builder.append(inputString).reverse();
 
                 //сравнить и выдать результат
-                if (str.equals(bldr.toString())) {
-                    System.out.println("Строка \"" + str + "\" является полиндоромом.");
+                if (inputString.equals(builder.toString())) {
+                    System.out.println("Строка \"" + inputString + "\" является полиндоромом.");
                 } else {
-                    System.out.println("Строка \"" + str + "\" НЕ аявляется полиндоромом.");
+                    System.out.println("Строка \"" + inputString + "\" НЕ аявляется полиндоромом.");
                 }
-                bldr = new StringBuilder();
+                builder = new StringBuilder();
             }
         } catch (IOException e) {
             e.printStackTrace();

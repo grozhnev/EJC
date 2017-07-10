@@ -8,25 +8,25 @@ import java.io.InputStreamReader;
  * Задача из сборника задач Златопольского:
  *      9.43. Дано слово s1. Получить слово s2, образованное нечетными буквами слова s1.
  */
-public class oddLettersString {
+public class OddLettersString {
 
     public static void main(String[] args) {
 
-        String s1, s2;
+        String string1, string2;
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while(true) {
                 System.out.print("Введите слово или строку: ");
-                s1 = reader.readLine();
-                System.out.println("Вы ввели: " + s1);
+                string1 = reader.readLine();
+                System.out.println("Вы ввели: " + string1);
 
                 StringBuilder builder = new StringBuilder();
 
-                for (int i = 0; i < s1.length(); i++) {
+                for (int i = 0; i < string1.length(); i++) {
                     if (i % 2 == 0)
-                        builder.append(s1.charAt(i));
+                        builder.append(string1.charAt(i));
                 }
-                s2 = builder.toString();
-                System.out.print("Сейчас все нечетные символы из вашей строки испаряться: " + s2 + "\n\n");
+                string2 = builder.toString();
+                System.out.print("Сейчас все нечетные символы из вашей строки испаряться: " + string2 + "\n\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
