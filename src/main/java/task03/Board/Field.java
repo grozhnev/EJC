@@ -10,45 +10,37 @@ public class Field implements Coordinates {
     private char coordX;
     private int coordY;
     private String status;
-    private Ship sh; //для доступа к типу state в interface Ship
+    private Ship sh;
     private String shipState;
-    //private int fieldID;
 
     public Field(){
-        this.status  = TYPE[0]; // clean by default
-        this.shipState = ""; // empty by default
+        this.status  = TYPE[0];
+        this.shipState = "";
     }
-
-    // Игрок вводит координаты (A1), создается поле
     public Field(char ch, int num) {
         this.coordX = ch;
         this.coordY = num;
-        this.status  = TYPE[0]; // clean by default
-        this.shipState = ""; // empty by default
+        this.status  = TYPE[0];
+        this.shipState = "";
     }
-
     public Field(char ch, int num, int state) {
         this.coordX = ch;
         this.coordY = num;
-        this.status  = TYPE[state]; //0="CLEAN", 1="PADDED", 2="DAMAGED", 3="MARKED", 4="KILLED"
-        this.shipState = ""; // empty by default
+        this.status  = TYPE[state];
+        this.shipState = "";
     }
-
     public Field(char ch, int num, int state, int shipState) {
         this.coordX = ch;
         this.coordY = num;
-        this.status  = TYPE[state]; //0="CLEAN", 1="PADDED", 2="DAMAGED", 3="MARKED", 4="KILLED"
-        this.shipState = Ship.state[shipState]; //{"Hidden", "Damaged" , "Killed"};
+        this.status  = TYPE[state];
+        this.shipState = Ship.state[shipState];
     }
-
-
-    public String getStatus(){
+    public String getStatus() {
         return this.status;
     }
     public void setStatus(String status) {
         this.status = status;
     }
-
     public char getX() {
         return coordX;
     }
@@ -59,19 +51,10 @@ public class Field implements Coordinates {
     public static boolean compareFields(Field a, Field b){
         return a.getX() == b.getX() && b.getY() == b.getY();
     }
-    //  статус корабля
     public String getShipState() {
         return shipState;
     }
     public void setShipState(int occupied) {
         this.shipState = Ship.state[occupied];
     }
-
-    /*public int getFieldID(){
-        return fieldID;
-    }
-    public void setFieldID(int id){
-        this.fieldID=id;
-    }*/
-
 }

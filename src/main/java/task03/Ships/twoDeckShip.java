@@ -11,13 +11,11 @@ public class twoDeckShip extends ArrayList<Field> implements Ship {
     private String state;
     private Collection<Field> ship;
     private RandomService randS2 = new RandomService();
-    //private boolean alive;
     private int serial_number;
     private int shipID;
 
     public twoDeckShip(int y){
         create();
-        //setAlive(true);
         this.serial_number= y ;
         System.out.println("2-deck ship added to battle field.");
     }
@@ -27,7 +25,6 @@ public class twoDeckShip extends ArrayList<Field> implements Ship {
         ship.addAll(randS2.getNewShipBuildInEmptyFreeSpace(numberOfDecks));
         setShipID(RandomService.shipID++);
     }
-    //работа с состоянием короболя
     public void changeState(int i){
         this.state = Ship.state[i];
     }
@@ -41,13 +38,6 @@ public class twoDeckShip extends ArrayList<Field> implements Ship {
     public int getSerialNumber(){
         return serial_number;
     }
-    /*public boolean isAlive() {
-        return alive;
-    }
-    public void setAlive(boolean alive) {
-        this.alive = alive;
-    }*/
-
     public int getShipID(){
         return shipID;
     }

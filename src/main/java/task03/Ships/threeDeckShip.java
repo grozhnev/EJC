@@ -11,13 +11,11 @@ public class threeDeckShip extends ArrayList<Field> implements Ship {
     private String state;
     private Collection<Field> ship;
     private RandomService randS3 = new RandomService();
-    //private boolean alive;
     private int serial_number;
     private int shipID;
 
     public threeDeckShip(int x){
         create();
-        //setAlive(true);
         this.serial_number = x;
         System.out.println("3-deck ship added to battle field.");
     }
@@ -27,7 +25,6 @@ public class threeDeckShip extends ArrayList<Field> implements Ship {
         ship.addAll(randS3.getNewShipBuildInEmptyFreeSpace(numberOfDecks));
         setShipID(RandomService.shipID++);
     }
-    //работа с состоянием короболя
     public void changeState(int i){
         this.state = Ship.state[i];
     }
@@ -37,22 +34,13 @@ public class threeDeckShip extends ArrayList<Field> implements Ship {
     public int showDecksNumber(){
         return threeDeckShip.numberOfDecks;
     }
-
     public int getSerialNumber(){
         return serial_number;
     }
-    /*public boolean isAlive() {
-        return alive;
-    }
-    public void setAlive(boolean alive) {
-        this.alive = alive;
-    }*/
-
     public int getShipID(){
         return shipID;
     }
     public void setShipID(int id){
         this.shipID=id;
     }
-
 }
