@@ -23,19 +23,24 @@ public class Marine_Fight extends Field {
     Field field;
     ArrayList<ArrayList<Field>> fleet;
 
+    public static void main(String[] args) {
+        Marine_Fight battle = new Marine_Fight();
+        battle.play();
+    }
+
     private void play() {
         try (BufferedReader buff = new BufferedReader(new InputStreamReader(System.in))) {
-        player = new Player();
-        board = new Board(); //field 10x10 is generated
-        fleet = new ArrayList<>();
-        instantiateShipsOnBoard();
+            player = new Player();
+            board = new Board(); //field 10x10 is generated
+            fleet = new ArrayList<>();
+            instantiateShipsOnBoard();
 
-        Rules.header();
-        Rules.whatToDo();
+            Rules.header();
+            Rules.whatToDo();
 
-        do {
-            System.out.print("Currently on the field there are :" + fleet.size() + ", you got"
-                                                        + (Rules.MAX_ATTEMPTS - Player.HIT) + " to blow them up.\n");
+            do {
+                System.out.print("Currently on the field there are :" + fleet.size() + ", you got"
+                        + (Rules.MAX_ATTEMPTS - Player.HIT) + " to blow them up.\n");
 
                 player.setPlX((char) buff.read());
                 player.setPlY(Integer.parseInt(buff.readLine()));
@@ -43,15 +48,15 @@ public class Marine_Fight extends Field {
                 System.out.print("Координата Х = " + player.getPlX());
                 System.out.print(", Координата Y = " + player.getPlY());
 
-            field = new Field(player.getPlX(), player.getPlY());
+                field = new Field(player.getPlX(), player.getPlY());
 
-            specifyTheField();
-            Player.HIT++;
-            if(playerWins()){
-                break;
-            }
-        } while (Player.HIT <= Rules.MAX_ATTEMPTS);
-        computerWins();
+                specifyTheField();
+                Player.HIT++;
+                if (playerWins()) {
+                    break;
+                }
+            } while (Player.HIT <= Rules.MAX_ATTEMPTS);
+            computerWins();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,11 +76,7 @@ public class Marine_Fight extends Field {
         }
     }
 
-
-
-
-
-    private void specifyTheField(){
+    private void specifyTheField() {
         /* field status  0: CLEAN='0', 1: PADDED='*',  2:DAMAGED='?', 3: MARKED='-', 4: KILLED='x' */
              /* ship status   0="Hidden",   1="Damaged" ,   2="Killed" */
         if ((Objects.equals(field.getStatus(), Coordinates.TYPE[0]))) {
@@ -110,19 +111,11 @@ public class Marine_Fight extends Field {
         }
     }
 
-    private void computerWins(){
+    private void computerWins() {
         if (fleet.size() > 0) {
             System.out.println("YOU LOSE!");
         } else {
             System.err.println("All ships are killed, while all attempts are done. Please check.");
         }
-    }
-
-    /**
-     * сделать Draw()
-     */
-    public static void main(String[] args) {
-        Marine_Fight battle = new Marine_Fight();
-        battle.play();
     }
 }
