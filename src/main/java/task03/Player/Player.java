@@ -14,6 +14,7 @@ public class Player {
     public void setPlX(char plX) {
         this.plX = plX;
     }
+
     public int getPlY() {
         return plY;
     }

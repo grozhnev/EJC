@@ -5,103 +5,27 @@ import task03.Board.Coordinates;
 import task03.Board.Field;
 import task03.Ships.Ship;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
  * Generate random logic.
  */
-
-public class RandomService extends Board{
-    Ship sh;
-    Coordinates coo;
-    private Random fortune = new Random();
-    private Field point;
-    private Collection<Field> ship = new ArrayList<>();
-
-    private int generateY(){
-        return Coordinates.Y[fortune.nextInt(9)];
-    }
-    private char generateX(){
-        return Coordinates.X[fortune.nextInt(9)];
-    }
-
-    private Field generateStartField(){
-        return new Field(generateX(), generateY());
-    }
+public class RandomService extends Board {
     public static int shipID = 0;
-    public ArrayList<Field> getNewShipBuildInEmptyFreeSpace(int Ndecks){
-        do {
-            point = generateStartField();
-            //мы получили поле, проверим его статус и свободное место для корабля
-            if ( (Objects.equals(point.getStatus(), Coordinates.TYPE[0]))  && hasEmptySpace(Ndecks) ){
-                return (ArrayList<Field>) ship;
-            }
-            ship.clear();
-        } while( (Objects.equals(point.getStatus(), Coordinates.TYPE[0]))  );
-        return (ArrayList<Field>) ship;
-    }
+    Ship shipInterface;
+    Coordinates coordinatesInterface;
+    private Field randomField;
+    private Collection<Field> newShip = new ArrayList<>();
+    private Random fortune = new Random();
 
-    private boolean hasEmptySpace(int range){
-        Collection<Field> boatBuilder = new ArrayList<>();
-        int rangeXleft =Arrays.asList(Coordinates.X).indexOf(((char) point.getX())) + 1 ;
-        int rangeXright = 9 - rangeXleft ;
-        int rangeYup = point.getY();
-        int rangeYdown = 9 - rangeYup;
+    public static void killTheShipAndMarFieldsAround(ArrayList<Field> dyingShip) {
+        for (Field deck : dyingShip) {
+            int coordinateXOfKilledDeck = Arrays.asList(Coordinates.X).indexOf(deck.getX()); /* Coordinates.X[deck.getX()]; */
+            int coordinateYOfKilledDeck = Arrays.asList(Coordinates.Y).indexOf(deck.getY()); /* Coordinates.Y[deck.getY()]; */
 
-        for (int i = 0; i < range ; i++) {
-            for (int j = 0; j < range ; j++) {
-                if (boatBuilder.size() == range){
-                   return true;
-                } else {
-                    if(Objects.equals(showFieldStatus(Coordinates.X[j], i), Coordinates.TYPE[0])) {
-                        if (rangeXleft > 0) {
-                            for (int k = rangeXleft; k >= 0; k--) {
-                                if (Objects.equals(showFieldStatus(Coordinates.X[k], i), Coordinates.TYPE[0])) {
-                                    boatBuilder.add( gameBoard[Coordinates.X[k]][i]);
-                                }
-                            }
-                        } else if (rangeXright  > 0) {
-                            for (int f = rangeXleft; f <= rangeXright+rangeXleft; f++) {
-                                if (Objects.equals(showFieldStatus(Coordinates.X[f], i), Coordinates.TYPE[0])) {
-                                    boatBuilder.add( gameBoard[Coordinates.X[f]][i]);
-                                }
-                            }
-                        } else if (rangeYup > 0) {
-                            for (int h = rangeYup; h >= 0; h--) {
-                                if (Objects.equals(showFieldStatus(Coordinates.X[j], h), Coordinates.TYPE[0])) {
-                                    boatBuilder.add( gameBoard[Coordinates.X[j]][h]);
-                                }
-                            }
-                        } else if ( rangeYdown > 0) {
-                            for (int t = rangeYup; t <= rangeYup+rangeYdown; t++) {
-                                if (Objects.equals(showFieldStatus(Coordinates.X[j], t), Coordinates.TYPE[0])) {
-                                    boatBuilder.add( gameBoard[Coordinates.X[j]][t]);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (boatBuilder.size() < range) {
-            return false;
-        } else {
-            for (Field f:boatBuilder) {
-                f.setShipState(0);
-            }
-            ship.addAll(boatBuilder);
-            return true;
-        }
-    }
-
-    public static void markEmptyFieldsAndKillTheShip(ArrayList<Field> dyingShip) {
-        for (Field deck:dyingShip) {
-            int xCo = Coordinates.X[deck.getX()];
-            int yCo = Coordinates.Y[deck.getY()];
-
-            for (int j = (yCo); j <= (yCo+1); j++) {
-                for (int i = (xCo-1); i <= (xCo+1) ; i++){
+            for (int j = coordinateYOfKilledDeck - 1; j <= coordinateYOfKilledDeck + 1; j++) {
+                for (int i = coordinateXOfKilledDeck - 1; i <= coordinateXOfKilledDeck + 1; i++) {
+                    /* если статус поля DAMAGED '?' - делаем его KILLED 'x' ; все остальные  MARKED='-' */
                     if (Objects.equals(gameBoard[i][j].getStatus(), Coordinates.TYPE[2])) {
                         gameBoard[i][j].setStatus(Coordinates.TYPE[4]);
                     } else {
@@ -110,6 +34,94 @@ public class RandomService extends Board{
                 }
             }
         }
+    }
 
+    private char generateX() {
+        return Coordinates.X[fortune.nextInt(9)];
+    }
+
+    private int generateY() {
+        return Coordinates.Y[fortune.nextInt(9)];
+    }
+
+    /* placing ships */
+    private Field generateStartFieldOfAShip() {
+        return new Field(generateX(), generateY());
+    }
+
+    public ArrayList<Field> buildNewShipInEmptyFields(int numberOfDecs) {
+        do {
+            randomField = generateStartFieldOfAShip();
+            /* мы получили поле, проверим его статус и свободное место для корабля */
+            if ((Objects.equals(randomField.getStatus(), Coordinates.TYPE[0])) && hasEmptySpace(numberOfDecs)) {
+                return (ArrayList<Field>) newShip;
+            }
+            newShip.clear();
+        } while ((Objects.equals(randomField.getStatus(), Coordinates.TYPE[0])));
+        return (ArrayList<Field>) newShip;
+    }
+
+    private boolean hasEmptySpace(int requiredRangeOfEmptyFields) {
+        ArrayList<Field> boatBuilder = new ArrayList<>();
+
+        int rangeToTheLeftOfX = Arrays.asList(Coordinates.X).indexOf(randomField.getX()); //Arrays.asList(Coordinates.X).indexOf(((char) randomField.getX())) + 1;
+        int rangeToTheRightOfX = 9 - rangeToTheLeftOfX;
+        int rangeAboveY = Arrays.asList(Coordinates.Y).indexOf(randomField.getY()); // randomField.getY();
+        int rangeUnderY = 9 - rangeAboveY;
+
+        for (int i = 0; i < requiredRangeOfEmptyFields; i++) {
+            for (int j = 0; j < requiredRangeOfEmptyFields; j++) {
+                if (boatBuilder.size() == requiredRangeOfEmptyFields) {
+                    return true;
+                } else {
+                    if (Objects.equals(showFieldStatus(randomField.getX(),randomField.getY()), Coordinates.TYPE[0])) {
+                        boatBuilder.add(randomField);
+                        if (rangeToTheLeftOfX > 0) {
+                            for (int k = rangeToTheLeftOfX - 1; k >= 0; k--) {
+                                if (Objects.equals(showFieldStatus(Coordinates.X[k], randomField.getY()), Coordinates.TYPE[0])) {
+                                    // здесь ловлю ArrayIndexOutOfBoundsException: -1 , когда пытаюсь ArrayList<Field>.add(Field[][]);
+                                    //boatBuilder.add( gameBoard[Arrays.asList(Coordinates.X).indexOf(k)][Coordinates.Y[randomField.getY()]] );/* boatBuilder.add(gameBoard[Coordinates.X[k]][i]); */
+                                    boatBuilder.add(gameBoard[k][randomField.getY()]);
+                                }
+                            }
+                        } else if (rangeToTheRightOfX > 0) {
+                            for (int f = rangeToTheLeftOfX + 1; f <= rangeToTheLeftOfX + rangeToTheRightOfX; f++) {
+                                if (Objects.equals(showFieldStatus(Coordinates.X[f], randomField.getY()), Coordinates.TYPE[0])) {
+                                    //boatBuilder.add( gameBoard[Arrays.asList(Coordinates.X).indexOf(f)][Coordinates.Y[randomField.getY()]] );/* boatBuilder.add(gameBoard[Coordinates.X[f]][i]); */
+                                    boatBuilder.add(gameBoard[f][randomField.getY()]);
+                                }
+                            }
+                        } else if (rangeAboveY > 0) {
+                            for (int h = rangeAboveY - 1; h >= 0; h--) {
+                                if (Objects.equals(showFieldStatus(randomField.getX(), h), Coordinates.TYPE[0])) {
+                                    //boatBuilder.add( gameBoard[Arrays.asList(Coordinates.X).indexOf(randomField.getX())][Coordinates.Y[h]] );/* boatBuilder.add(gameBoard[Coordinates.X[j]][h]); */
+                                    boatBuilder.add(gameBoard[randomField.getX()][h]);
+                                }
+                            }
+                        } else if (rangeUnderY > 0) {
+                            for (int t = rangeAboveY + 1; t <= rangeAboveY + rangeUnderY; t++) {
+                                if (Objects.equals(showFieldStatus(randomField.getX(), t), Coordinates.TYPE[0])) {
+                                    //boatBuilder.add( gameBoard[Arrays.asList(Coordinates.X).indexOf(randomField.getX())][Coordinates.Y[t]] );/* boatBuilder.add(gameBoard[Coordinates.X[j]][t]); */
+                                    boatBuilder.add(gameBoard[randomField.getX()][t]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (boatBuilder.size() < requiredRangeOfEmptyFields) {
+            boatBuilder.clear();
+            return false;
+        } else {
+            /*в каждый элемент нового корабля поставить маячок hidden (КОРАБЛЬ спрятан) */
+            for (Field field : boatBuilder) {
+                field.setShipState(0); /* "Hidden", "Damaged" , "Killed"; */
+            }
+            newShip.addAll(boatBuilder);
+            boatBuilder.clear();
+            return true;
+        }
     }
 }
