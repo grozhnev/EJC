@@ -23,6 +23,7 @@ public class ThreeDeckShip extends ArrayList<Field> implements Ship {
         ship.addAll(randomly.buildNewShipInEmptyFields(numberOfDecks));
         this.state = Ship.state[0];
         setShipID(RandomService.shipID++);
+        System.out.println("3-deck ship created");
     }
 
     public int getShipID() {

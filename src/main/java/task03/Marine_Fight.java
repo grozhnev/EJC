@@ -18,10 +18,10 @@ import java.util.Objects;
  * This class launch the "Marine Fight" game
  */
 public class Marine_Fight extends Field {
-    Player player;
-    Board board;
-    Field field;
-    ArrayList<ArrayList<Field>> fleet;
+    private Player player;
+    private Board board;
+    private Field field;
+    private ArrayList<ArrayList<Field>> fleet;
 
     private void play() {
         try (BufferedReader buff = new BufferedReader(new InputStreamReader(System.in))) {
@@ -34,14 +34,13 @@ public class Marine_Fight extends Field {
         Rules.whatToDo();
 
         do {
-            System.out.print("Currently on the field there are :" + fleet.size() + ", you got"
-                                                        + (Rules.MAX_ATTEMPTS - Player.HIT) + " to blow them up.\n");
+            System.out.print("Currently " + fleet.size() + " ships on the board. You got "
+                                + (Rules.MAX_ATTEMPTS - Player.HIT) + " attempts to win the game.\n");
 
+                //display();
                 player.setPlX((char) buff.read());
                 player.setPlY(Integer.parseInt(buff.readLine()));
-                //проверочные поля
-                System.out.print("Координата Х = " + player.getPlX());
-                System.out.print(", Координата Y = " + player.getPlY());
+                System.out.print("You've entered " + player.getPlX() + player.getPlY() + ". ");
 
             field = new Field(player.getPlX(), player.getPlY());
 
@@ -70,10 +69,6 @@ public class Marine_Fight extends Field {
             }
         }
     }
-
-
-
-
 
     private void specifyTheField(){
         /* field status  0: CLEAN='0', 1: PADDED='*',  2:DAMAGED='?', 3: MARKED='-', 4: KILLED='x' */
