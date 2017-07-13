@@ -1,8 +1,8 @@
 # EpamJavaCore
 This repository is a prototype of proper "EJC" repository, built as an example on a training course.
 
-Contents
-'task01' folder (simple java class)
-'task02' folder (working release of Duck Casino)
-'task03' folder (BattleShip game, currently not working & has no display function)
-'task04' folder (solutions for Zlatopolsy book task #9.43 and #9.116. Working with Strings)
+Contents:
+  - <a href="https://github.com/grozhnev/hello-world"> task01 </a> (simple java class)
+  - <a href="https://github.com/grozhnev/EpamJavaCore/tree/master/src/main/java/task02"> task02 </a> (Duck Casino)
+  - <a href="https://github.com/grozhnev/EpamJavaCore/tree/master/src/main/java/task03"> task03 </a> (BattleShip game, currently has no display function)
+  - <a href="https://github.com/grozhnev/EpamJavaCore/tree/master/src/main/java/task04"> task04 </a> (Working with Strings: solutions for Zlatopolsy book task #9.43 and #9.116.)
