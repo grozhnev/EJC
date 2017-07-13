@@ -3,6 +3,7 @@ package task03;
 import task03.Board.Board;
 import task03.Board.Coordinates;
 import task03.Board.Field;
+import task03.Display.Display;
 import task03.GameLogic.RandomService;
 import task03.GameLogic.Rules;
 import task03.Player.Player;
@@ -12,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -21,29 +23,28 @@ public class Marine_Fight extends Field {
     private Player player;
     private Board board;
     private Field field;
+
+    public static Field[][] gameBoard;
     private ArrayList<ArrayList<Field>> fleet;
 
     private void play() {
+        Rules.header();
+
         try (BufferedReader buff = new BufferedReader(new InputStreamReader(System.in))) {
         player = new Player();
         board = new Board(); //field 10x10 is generated
         fleet = new ArrayList<>();
+
         instantiateShipsOnBoard();
-
-        Rules.header();
         Rules.whatToDo();
-
         do {
+            Display.drawTheBoard();
             System.out.print("Currently " + fleet.size() + " ships on the board. You got "
-                                + (Rules.MAX_ATTEMPTS - Player.HIT) + " attempts to win the game.\n");
-
-                //display();
-                player.setPlX((char) buff.read());
-                player.setPlY(Integer.parseInt(buff.readLine()));
-                System.out.print("You've entered " + player.getPlX() + player.getPlY() + ". ");
-
-            field = new Field(player.getPlX(), player.getPlY());
-
+                                            + (Rules.MAX_ATTEMPTS - Player.HIT) + " attempts to win the game.\n");
+            player.setPlX((char) buff.read());
+            player.setPlY(Integer.parseInt(buff.readLine()));
+            System.out.print("You've entered " + player.getPlX() + player.getPlY() + ". ");
+            field = Board.board[Arrays.asList(Coordinates.X).indexOf(player.getPlX())][player.getPlY()];
             specifyTheField();
             Player.HIT++;
             if(playerWins()){
@@ -78,10 +79,14 @@ public class Marine_Fight extends Field {
                 for (ArrayList<Field> armada : fleet) {
                     if (armada.contains(field)) {
                         if (armada.size() > 1) {
+                            System.out.println("Ship DAMAGED!\n");
                             field.setStatus(Coordinates.TYPE[2]); // field = DAMAGED
+                            field.setShipState(1); //ship damaged
                             armada.removeIf(field1 -> field1.equals(field));
                         } else {
+                            System.out.println("THE SHIP IS KILLED !\n");
                             field.setStatus(Coordinates.TYPE[4]); // KILLED
+                            field.setShipState(2); // killed
                             armada.removeIf(field1 -> field1.equals(field));
                             RandomService.killTheShipAndMarFieldsAround(armada);
                         }
@@ -89,10 +94,11 @@ public class Marine_Fight extends Field {
                 }
             } else {
                 field.setStatus(Coordinates.TYPE[1]); /*  We did not hit the target, mark field with '*'  */
+                System.out.println(" It was empty field =0)\n");
             }
         } else {
-            System.out.println("You're trying to hit the field \'" + field.getX() + field.getY() + "\' that is not empty. Please, retry another one.");
-            Player.HIT--;
+            System.out.println("You're trying to hit the field \'" + field.getX() + field.getY() + "\' that is not empty. Please, retry another one.\n");
+            Player.HIT += 2;
         }
     }
 
@@ -112,10 +118,7 @@ public class Marine_Fight extends Field {
             System.err.println("All ships are killed, while all attempts are done. Please check.");
         }
     }
-
-    /**
-     * сделать Draw()
-     */
+    
     public static void main(String[] args) {
         Marine_Fight battle = new Marine_Fight();
         battle.play();

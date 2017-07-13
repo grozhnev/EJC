@@ -19,6 +19,6 @@ public class Player {
         return plY;
     }
     public void setPlY(int plY) {
-        this.plY = plY;
+        this.plY = plY-1;
     }
 }
