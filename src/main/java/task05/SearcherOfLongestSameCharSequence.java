@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-
 /**
  * 9.153. Дан текст. Найти наибольшее количество идущих подряд одинаковых символов.
  */
