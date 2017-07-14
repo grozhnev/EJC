@@ -33,7 +33,6 @@ public class SearcherOfLongestSameCharSequence {
                         System.out.println("В строке несколько одинаковых по длине последоватедьностей одинаковых символов");
                         String secondSequence = bulder.toString();
                         moreThanOneSequence.append(sequence).append(" и ").append(secondSequence);
-
                     } else {
                         bulder = new StringBuffer(); // empty buffer
                     }
