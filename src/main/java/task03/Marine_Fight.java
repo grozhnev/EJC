@@ -41,10 +41,17 @@ public class Marine_Fight extends Field {
             Display.drawTheBoard();
             System.out.print("Currently " + fleet.size() + " ships on the board. You got "
                                             + (Rules.MAX_ATTEMPTS - Player.HIT) + " attempts to win the game.\n");
-            player.setPlX((char) buff.read());
-            player.setPlY(Integer.parseInt(buff.readLine()));
-            System.out.print("You've entered " + player.getPlX() + player.getPlY() + ". ");
-            field = Board.board[Arrays.asList(Coordinates.X).indexOf(player.getPlX())][player.getPlY()];
+            /**
+             * <<<<<<<<<<<<<
+             * фильтр ввода
+             * где корабли-то?
+             * почему ход не запоминается?
+             * и что с попытками?
+             */
+            player.setPlayerChoiceX((char) buff.read());
+            player.setPlayerChoiceY(Integer.parseInt(buff.readLine()));
+            System.out.print("You've entered " + player.getPlayerChoiceX() + (player.getPlayerChoiceY()+1)+ ". ");
+            field = Board.board[Arrays.asList(Coordinates.X).indexOf(player.getPlayerChoiceX())][player.getPlayerChoiceY()];
             specifyTheField();
             Player.HIT++;
             if(playerWins()){
@@ -73,7 +80,7 @@ public class Marine_Fight extends Field {
 
     private void specifyTheField(){
         /* field status  0: CLEAN='0', 1: PADDED='*',  2:DAMAGED='?', 3: MARKED='-', 4: KILLED='x' */
-             /* ship status   0="Hidden",   1="Damaged" ,   2="Killed" */
+        /* ship status   0="Hidden",   1="Damaged" ,   2="Killed" */
         if ((Objects.equals(field.getStatus(), Coordinates.TYPE[0]))) {
             if (Objects.equals(field.getShipState(), Ship.state[0])) {
                 for (ArrayList<Field> armada : fleet) {
@@ -118,7 +125,7 @@ public class Marine_Fight extends Field {
             System.err.println("All ships are killed, while all attempts are done. Please check.");
         }
     }
-    
+
     public static void main(String[] args) {
         Marine_Fight battle = new Marine_Fight();
         battle.play();

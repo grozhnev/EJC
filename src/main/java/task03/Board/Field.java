@@ -27,20 +27,6 @@ public class Field implements Coordinates {
         this.shipStatus = ""; // empty
     }
 
-    /*public Field(char characterX, int numberY, int fieldState) {
-        this.coordinateX = characterX;
-        this.coordinateY = numberY;
-        this.fieldStatus = TYPE[fieldState];*//* variations: 0="CLEAN", 1="PADDED", 2="DAMAGED", 3="MARKED", 4="KILLED" *//*
-        this.shipStatus = ""; // empty
-    }
-
-    public Field(char characterX, int numberY, int fieldState, int shipState) {
-        this.coordinateX = characterX;
-        this.coordinateY = numberY;
-        this.fieldStatus = TYPE[fieldState];*//* variations: 0="CLEAN", 1="PADDED", 2="DAMAGED", 3="MARKED", 4="KILLED" *//*
-        this.shipStatus = Ship.state[shipState]; *//*  variations: "Hidden", "Damaged" , "Killed" *//*
-    }*/
-
     public static boolean compareFields(Field a, Field b) {
         return a.getX() == b.getX() && b.getY() == b.getY();
     }

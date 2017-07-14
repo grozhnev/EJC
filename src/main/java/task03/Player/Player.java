@@ -4,21 +4,21 @@ package task03.Player;
  * Player enter coordinate A1, B7, J3
  */
 public class Player {
-    private char plX;
-    private int plY;
+    private char playerChoiceX;
+    private int playerChoiceY;
     public static int HIT=0;
 
-    public char getPlX() {
-        return plX;
+    public char getPlayerChoiceX() {
+        return playerChoiceX;
     }
-    public void setPlX(char plX) {
-        this.plX = plX;
+    public void setPlayerChoiceX(char coordX) {
+        this.playerChoiceX = coordX;
     }
 
-    public int getPlY() {
-        return plY;
+    public int getPlayerChoiceY() {
+        return playerChoiceY;
     }
-    public void setPlY(int plY) {
-        this.plY = plY-1;
+    public void setPlayerChoiceY(int coordY) {
+        this.playerChoiceY = coordY-1;
     }
 }

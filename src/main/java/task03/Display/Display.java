@@ -13,12 +13,12 @@ public class Display {
         System.out.print("\t   A B C D E F G H I J\n");
         for (int i = 0; i < Rules.FIELD_SIDE; i++) {
             if(i<Rules.FIELD_SIDE-1) {
-                System.out.print("\t" + (i + 1) + " ");
+                System.out.print("\t" + (i + 1 ) + " ");
             } else if (i == Rules.FIELD_SIDE-1){
-                System.out.print("   " + (i+1) + " ");
+                System.out.print("   " + (i + 1) + " ");
             }
             for (int j = 0; j < Rules.FIELD_SIDE; j++) {
-                System.out.print(" " + defineFieldImageByStatus(Board.board[i][j]));
+                System.out.print(" " + defineFieldImageByStatus(Board.board[j][i]));
                 newLine++;
                 if (newLine % 10 == 0) {
                     System.out.print("\n");
