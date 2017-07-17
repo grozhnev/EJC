@@ -1,8 +1,8 @@
-package task02.Duck;
+package task02.duck;
 
-import task02.Casino.Game;
-import task02.Casino.Totalizator;
-import task02.Fly.FlyWithWings;
+import task02.casino.Game;
+import task02.casino.Totalizator;
+import task02.fly.FlyWithWings;
 
 /**
  * This duck can participate the race

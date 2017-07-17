@@ -1,7 +1,7 @@
-package task03.Player;
+package task03.player;
 
 /**
- * Player enter coordinate A1, B7, J3
+ * player enter coordinate A1, B7, J3
  */
 public class Player {
     private char playerChoiceX;

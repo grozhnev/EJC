@@ -1,4 +1,4 @@
-package task02.Casino;
+package task02.casino;
 
 public class Player {
     private int money;

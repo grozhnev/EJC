@@ -1,13 +1,13 @@
 package task03;
 
-import task03.Board.Board;
-import task03.Board.Coordinates;
-import task03.Board.Field;
-import task03.Display.Display;
-import task03.GameLogic.RandomService;
-import task03.GameLogic.Rules;
-import task03.Player.Player;
-import task03.Ships.*;
+import task03.board.Board;
+import task03.board.Coordinates;
+import task03.board.Field;
+import task03.display.Display;
+import task03.gameLogic.RandomService;
+import task03.gameLogic.Rules;
+import task03.player.Player;
+import task03.ships.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;

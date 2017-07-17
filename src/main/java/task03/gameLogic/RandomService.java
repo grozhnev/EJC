@@ -1,9 +1,9 @@
-package task03.GameLogic;
+package task03.gameLogic;
 
-import task03.Board.Board;
-import task03.Board.Coordinates;
-import task03.Board.Field;
-import task03.Ships.Ship;
+import task03.board.Board;
+import task03.board.Coordinates;
+import task03.board.Field;
+import task03.ships.Ship;
 
 import java.util.*;
 

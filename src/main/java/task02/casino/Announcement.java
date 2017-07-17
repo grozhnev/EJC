@@ -1,11 +1,11 @@
-package task02.Casino;
+package task02.casino;
 
 /**
  * This class contains all the print text.
  */
 public class Announcement {
     public static   void greet(){
-        System.out.println("Make a bet on a Duck from 1 to 5");
+        System.out.println("Make a bet on a duck from 1 to 5");
     }
 
     public static void results(){

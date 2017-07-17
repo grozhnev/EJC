@@ -1,7 +1,6 @@
-package task02.Duck;
+package task02.duck;
 
-import task02.Casino.Totalizator;
-import task02.Fly.FlyBehaviour;
+import task02.fly.FlyBehaviour;
 
 
 public abstract class Duck {

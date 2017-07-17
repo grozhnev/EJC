@@ -1,9 +1,9 @@
-package task02.Duck;
+package task02.duck;
 
-import task02.Fly.HasNoWings;
+import task02.fly.HasNoWings;
 
 /**
- * this Duck has no wings and cannot fly
+ * this duck has no wings and cannot fly
  */
 
 public class MallardDuck extends Duck{

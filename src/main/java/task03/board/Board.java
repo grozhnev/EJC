@@ -1,12 +1,12 @@
-package task03.Board;
+package task03.board;
 
-import task03.Display.Display;
-import task03.GameLogic.Rules;
+import task03.display.Display;
+import task03.gameLogic.Rules;
 
 import java.util.Arrays;
 
 /**
- * Board consists of Fields.
+ * board consists of Fields.
  */
 public class Board  {
     public static Field[][] board = new Field[10][10];  // <<<< собирается сюда

@@ -1,6 +1,6 @@
-package task03.Board;
+package task03.board;
 
-import task03.Ships.Ship;
+import task03.ships.Ship;
 
 /**
  * represent Field entity.

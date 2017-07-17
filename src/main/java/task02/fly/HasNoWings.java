@@ -1,4 +1,4 @@
-package task02.Fly;
+package task02.fly;
 
 public class HasNoWings implements FlyBehaviour {
 

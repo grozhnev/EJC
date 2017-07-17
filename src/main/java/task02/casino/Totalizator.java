@@ -1,4 +1,4 @@
-package task02.Casino;
+package task02.casino;
 
 import java.util.Random;
 

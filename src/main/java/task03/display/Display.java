@@ -1,9 +1,9 @@
-package task03.Display;
+package task03.display;
 
 
-import task03.Board.Board;
-import task03.Board.Field;
-import task03.GameLogic.Rules;
+import task03.board.Board;
+import task03.board.Field;
+import task03.gameLogic.Rules;
 
 public class Display {
     Rules rules = new Rules();

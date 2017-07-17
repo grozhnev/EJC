@@ -1,6 +1,6 @@
-package task03.Ships;
+package task03.ships;
 
-import task03.Board.Field;
+import task03.board.Field;
 
 import java.util.ArrayList;
 import java.util.Collection;

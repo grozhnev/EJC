@@ -1,12 +1,9 @@
-package task02.Casino;
+package task02.casino;
 
-import task02.Duck.Duck;
-import task02.Duck.DuckRacer;
-import task02.Duck.MallardDuck;
+import task02.duck.Duck;
+import task02.duck.DuckRacer;
+import task02.duck.MallardDuck;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -103,7 +100,7 @@ public class Game {
 
     private void showTheResultsOfEachDuck(){
         for (Duck d:participants ) {
-            System.out.print("\nThe Duck #" + (participants.indexOf(d)+1));
+            System.out.print("\nThe duck #" + (participants.indexOf(d)+1));
             if (d instanceof DuckRacer) {
                 System.out.print(" flew " + d.getDistance() + " meters.");
                 if (getTheWinner() == participants.indexOf(d)) {

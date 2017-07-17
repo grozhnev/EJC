@@ -1,6 +1,6 @@
 package task02;
 
-import task02.Casino.Game;
+import task02.casino.Game;
 
 /**
  * This class launch DuckCasino Race.
@@ -8,8 +8,8 @@ import task02.Casino.Game;
 public class Main {
 
     public static void main(String[] args) {
-        /*Duck racer = new DuckRacer();
-        Duck rubber = new MallardDuck();
+        /*duck racer = new DuckRacer();
+        duck rubber = new MallardDuck();
 
         racer.performFly();
         rubber.performFly();

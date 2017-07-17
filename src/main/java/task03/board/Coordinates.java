@@ -1,4 +1,4 @@
-package task03.Board;
+package task03.board;
 
 /**
  * Represents coordinates, that are implemented in class Field.

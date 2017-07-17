@@ -1,4 +1,4 @@
-package task03.GameLogic;
+package task03.gameLogic;
 
 /**
  * Game rules
