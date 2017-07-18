@@ -41,13 +41,6 @@ public class Marine_Fight extends Field {
             Display.drawTheBoard();
             System.out.print("Currently " + fleet.size() + " ships on the board. You got "
                                             + (Rules.MAX_ATTEMPTS - Player.HIT) + " attempts to win the game.\n");
-            /**
-             * <<<<<<<<<<<<<
-             * фильтр ввода
-             * где корабли-то?
-             * почему ход не запоминается?
-             * и что с попытками?
-             */
             player.setPlayerChoiceX((char) buff.read());
             player.setPlayerChoiceY(Integer.parseInt(buff.readLine()));
             System.out.print("You've entered " + player.getPlayerChoiceX() + (player.getPlayerChoiceY()+1)+ ". ");
@@ -79,32 +72,31 @@ public class Marine_Fight extends Field {
     }
 
     private void specifyTheField(){
-        /* field status  0: CLEAN='0', 1: PADDED='*',  2:DAMAGED='?', 3: MARKED='-', 4: KILLED='x' */
-        /* ship status   0="Hidden",   1="Damaged" ,   2="Killed" */
         if ((Objects.equals(field.getStatus(), Coordinates.TYPE[0]))) {
             if (Objects.equals(field.getShipState(), Ship.state[0])) {
                 for (ArrayList<Field> armada : fleet) {
                     if (armada.contains(field)) {
                         if (armada.size() > 1) {
                             System.out.println("Ship DAMAGED!\n");
-                            field.setStatus(Coordinates.TYPE[2]); // field = DAMAGED
-                            field.setShipState(1); //ship damaged
+                            field.setStatus(Coordinates.TYPE[2]); 
+                            field.setShipState(1);
                             armada.removeIf(field1 -> field1.equals(field));
                         } else {
                             System.out.println("THE SHIP IS KILLED !\n");
-                            field.setStatus(Coordinates.TYPE[4]); // KILLED
-                            field.setShipState(2); // killed
+                            field.setStatus(Coordinates.TYPE[4]); 
+                            field.setShipState(2); 
                             armada.removeIf(field1 -> field1.equals(field));
                             RandomService.killTheShipAndMarFieldsAround(armada);
                         }
                     }
                 }
             } else {
-                field.setStatus(Coordinates.TYPE[1]); /*  We did not hit the target, mark field with '*'  */
+                field.setStatus(Coordinates.TYPE[1]); 
                 System.out.println(" It was empty field =0)\n");
             }
         } else {
-            System.out.println("You're trying to hit the field \'" + field.getX() + field.getY() + "\' that is not empty. Please, retry another one.\n");
+            System.out.println("You're trying to hit the field \'" + field.getX() + field.getY() +
+                                                                   "\' that is not empty. Please, retry another one.\n");
             Player.HIT += 2;
         }
     }
