@@ -6,8 +6,7 @@ package task03.gameLogic;
 public class Rules {
     public static int MAX_ATTEMPTS = 30;
     public static int FIELD_SIDE = 10;
-
-     /* victory marker */
+    
     private static boolean victory;
 
     public static boolean isVictory() {
