@@ -9,10 +9,9 @@ import java.util.Arrays;
  * board consists of Fields.
  */
 public class Board  {
-    public static Field[][] board = new Field[10][10];  // <<<< собирается сюда
+    public static Field[][] board = new Field[10][10]; 
     Display draw = new Display();
 
-    //constructor
     public Board() {
         generateBoard10x10();
     }
@@ -29,5 +28,3 @@ public class Board  {
         return board[Arrays.asList(Coordinates.X).indexOf(characterX)][ numberY].getStatus();
     }
 }
-
-
