@@ -16,15 +16,15 @@ public class Field implements Coordinates {
     private Ship shipInterface;
 
     public Field() {
-        this.fieldStatus = TYPE[0]; // clean
-        this.shipStatus = ""; // empty
+        this.fieldStatus = TYPE[0];
+        this.shipStatus = ""; 
     }
 
     public Field(char characterX, int numberY) {
         this.coordinateX = characterX;
         this.coordinateY = numberY;
-        this.fieldStatus = TYPE[0]; // clean
-        this.shipStatus = ""; // empty
+        this.fieldStatus = TYPE[0]; 
+        this.shipStatus = "";
     }
 
     public static boolean compareFields(Field a, Field b) {
