@@ -12,7 +12,7 @@ import java.util.Random;
  * Вводите 100 чисел через рандом, 0..1000, Insertion Sort.
  * Покрыть Юнит тестами.
  * Make lists, not war.
- *
+ * <p>
  * P.S.: Решение незначительно изменяет условие без потери смысла.
  */
 
@@ -22,13 +22,14 @@ public class InsertionSort {
 
         System.out.println("Эта программа принимает на вход любые целые числа в диапазоне от " + Integer.MIN_VALUE +
                 " до " + Integer.MAX_VALUE + " . На каждое введенное число, создается ещё одно случайное число.\n" +
-                "После этого массив символов будет выведен в консоль, затем отсортирован методом сортировки вставкой.\n");
+                "Список принятых чисел будет выведен в консоль до и после сортировки вставкой.\n");
 
-        ArrayList<Integer> numbers = new ArrayList<>();
-        Random randomNumber = new Random();
         int temp;
         int place;
+        int randomInt;
         String userInput;
+        ArrayList<Integer> numbers = new ArrayList<>();
+        Random randomNumber = new Random();
 
         /**
          * Instantiation numbers.
@@ -36,14 +37,14 @@ public class InsertionSort {
         System.out.println("Введите 10 чисел: ");
         try (BufferedReader input = new BufferedReader(new InputStreamReader(System.in))) {
             for (int i = 10; i > 0; i--) {
-                int newInt = randomNumber.nextInt();
-                numbers.add(newInt);
+                randomInt = randomNumber.nextInt();
+                numbers.add(randomInt);
                 userInput = input.readLine().replaceAll("[^\\d.]", "");
                 numbers.add(Integer.parseInt(userInput));
                 System.out.println("Осталось " + (i - 1));
 
             }
-            System.out.println("\nНеотсортированный список чисел:" + numbers.toString());
+            System.out.println("\nНеотсортированный список чисел: " + numbers.toString());
 
             /**
              * Insertion Sort in action.
@@ -61,7 +62,7 @@ public class InsertionSort {
                     numbers.set(place, temp);
                 }
             }
-            System.out.println("Отсотритрованный список чисел методом вставки : " + numbers.toString());
+            System.out.println("Отсотритрованный список чисел методом вставки: " + numbers.toString());
 
         } catch (IOException e) {
             e.printStackTrace();
