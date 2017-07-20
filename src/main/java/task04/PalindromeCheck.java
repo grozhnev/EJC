@@ -7,14 +7,14 @@ import java.util.ArrayList;
 
 /**
  * Задача из сборника задач Златопольского:
- *      9.116. Проверить, является ли "перевертышем" (см. задачу 9.78) следующая символьная строка после удаления
- *             из нее всех пробелов:
- *                  а) АРГЕНТИНА МАНИТ НЕГРА;
- *                  б) ПОТ КАК ПОТОП;
- *                  в) А РОЗА УПАЛА НА ЛАПУ АЗОРА.
- *              Во всех задачах последние символы "_", полученные после удаления пробелов, не учитывать.
+ * 9.116. Проверить, является ли "перевертышем" (см. задачу 9.78) следующая символьная строка после удаления
+ * из нее всех пробелов:
+ * а) АРГЕНТИНА МАНИТ НЕГРА;
+ * б) ПОТ КАК ПОТОП;
+ * в) А РОЗА УПАЛА НА ЛАПУ АЗОРА.
+ * Во всех задачах последние символы "_", полученные после удаления пробелов, не учитывать.
  */
-public class PalindromeCheck {
+class PalindromeCheck {
 
     public static void main(String[] args) {
         String check1 = "АРГЕНТИНА МАНИТ НЕГРА";
@@ -29,11 +29,11 @@ public class PalindromeCheck {
         zadanye.add(check2);
         zadanye.add(check3);
 
-        for (String z: zadanye) {
+        for (String z : zadanye) {
             inputString = z.replaceAll(" ", "");
-            builder= builder.append(inputString).reverse();
+            builder = builder.append(inputString).reverse();
 
-            if(inputString.equals(builder.toString())) {
+            if (inputString.equals(builder.toString())) {
                 System.out.println("Строка \"" + z + "\" является палиндромом.");
             } else {
                 System.out.println("Строка \"" + z + "\" НЕ палиндромом.");
@@ -49,7 +49,6 @@ public class PalindromeCheck {
                 inputString = reader.readLine().replaceAll(" ", "");
                 builder = builder.append(inputString).reverse();
 
-                //сравнить и выдать результат
                 if (inputString.equals(builder.toString())) {
                     System.out.println("Строка \"" + inputString + "\" является полиндоромом.");
                 } else {

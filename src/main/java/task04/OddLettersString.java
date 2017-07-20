@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 /**
  * Задача из сборника задач Златопольского:
- *      9.43. Дано слово s1. Получить слово s2, образованное нечетными буквами слова s1.
+ * 9.43. Дано слово s1. Получить слово s2, образованное нечетными буквами слова s1.
  */
 public class OddLettersString {
 
@@ -14,7 +14,7 @@ public class OddLettersString {
 
         String string1, string2;
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            while(true) {
+            while (true) {
                 System.out.print("Введите слово или строку: ");
                 string1 = reader.readLine();
                 System.out.println("Вы ввели: " + string1);

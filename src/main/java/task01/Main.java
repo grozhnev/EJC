@@ -1,7 +1,10 @@
 package task01;
 
-public class Main {
+/**
+ * This simple class prints "Hello world" to console.
+ */
+class Main {
     public static void main(String[] args) {
-        System.out.println("banana");
+        System.out.println("Hello world!");
     }
 }
