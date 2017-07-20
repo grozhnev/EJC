@@ -1,10 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
- .idea
- /.idea
+ .idea/
+ build/
  *.iml
  out
  gen
- /target
+ target/
 .build
 .idea/EpamJavaCore.iml
 .idea/copyright/
