@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class RandomShipPlacement {
 
-    static int newShipID = 0;
+    static int newShipID ;
     Field randomField;
     ArrayList<Field> boat;
     private Random fortune = new Random();
