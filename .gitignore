@@ -13,5 +13,6 @@
 .idea/workspace.xml
 out/
 src/test/
-.idea
+.iml
+/.iml
 
