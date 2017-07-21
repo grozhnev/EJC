@@ -4,7 +4,7 @@ package task03.player;
  * player enter coordinate A1, B7, J3
  */
 public class Player {
-    public static int HIT = 0;
+    public static int HIT;
     private char plX;
     private int plY;
 

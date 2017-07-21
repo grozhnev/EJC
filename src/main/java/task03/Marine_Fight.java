@@ -42,11 +42,7 @@ class Marine_Fight extends Field {
                 Display.drawTheBoard();
                 System.out.print("Currently " + fleet.size() + " ships on the board. You got "
                         + (Rules.MAX_ATTEMPTS - Player.HIT) + " attempts to win the game.\n");
-                /**
-                 * <<<<<<<<<<<<<
-                 * фильтр ввода
-                 * если ввожу одинаковые - попытки убывают быстрее
-                 */
+
                 player.setPlX((char) buff.read());
                 player.setPlY(Integer.parseInt(buff.readLine()));
                 System.out.print("You've entered " + player.getPlX() + (player.getPlY() + 1) + ". ");
@@ -77,15 +73,8 @@ class Marine_Fight extends Field {
         }
     }
 
-    /**
-     * где корабли-то?
-     * почему ход не запоминается?
-     * и что с попытками?
-     */
-
     private void specifyTheField() {
-        /* field status  0: CLEAN='0', 1: PADDED='*',  2:DAMAGED='?', 3: MARKED='-', 4: KILLED='x' */
-        /* ship status   0="Hidden",   1="Damaged" ,   2="Killed" */
+
         if ((Objects.equals(field.getStatus(), Coordinates.TYPE[0]))) {
             if (Objects.equals(field.getShipState(), Ship.state[0])) {
                 for (ArrayList<Field> armada : fleet) {
@@ -93,7 +82,7 @@ class Marine_Fight extends Field {
                         if (armada.size() > 1) {
                             System.out.println("Ship DAMAGED!\n");
                             field.setStatus(Coordinates.TYPE[2]);
-                            field.setShipState(1); //ship damaged
+                            field.setShipState(1);
                             armada.removeIf(field1 -> field1.equals(field));
                         } else {
                             System.out.println("THE SHIP IS KILLED !\n");

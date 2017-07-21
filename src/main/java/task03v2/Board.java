@@ -24,9 +24,9 @@ public class Board {
         System.out.print("\t   A B C D E F G H I J\n");
         for (int i = 1; i <= 10; i++) {
             if (i <= 9) {
-                System.out.print("\t" + (i /* + 1*/) + " ");
-            } else if (i == 10/*9*/) {
-                System.out.print("   " + (i /* + 1*/) + " ");
+                System.out.print("\t" + i + " ");
+            } else if (i == 10) {
+                System.out.print("   " + i + " ");
             }
             for (int j = 1; j <= 10; j++) {
                 String pic = getGameboardField(ICoordinates.X[j], i).getFieldStatus();
@@ -67,7 +67,7 @@ public class Board {
         System.out.println("Currently in 'fleet' there are " + fleet.size() + " ships.");
     }
 
-    /* каждое добавленное поле на доску получает свой ключь-строку, например "F10" */
+    /* every field added to the board receive its private key string, like "F10" */
     void createBoard() {
         for (int m = 1; m < 11; m++) {
             for (int n = 1; n < 11; n++) {

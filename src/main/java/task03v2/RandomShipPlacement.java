@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class RandomShipPlacement {
 
-    static int newShipID ;
+    /*static int newShipID ;*/
     Field randomField;
     ArrayList<Field> boat;
     private Random fortune = new Random();
@@ -25,7 +25,7 @@ public class RandomShipPlacement {
     }
 
     public void buildNewShip(int numberOfDecks) {
-        /* запоминаем поля, которые мы посетили, чтобы не было бесконечного поиска */
+        /* remembering visited fields */
         ArrayList<Field> visitedFields = new ArrayList<>(100);
         boolean shipIsAdded = false;
 
@@ -36,11 +36,11 @@ public class RandomShipPlacement {
                 break;
             } else {
                 visitedFields.add(randomField);
-                System.out.println("Случайно выбранное поле для построения корабля: ["
+                System.out.println("Random field for building new ship: ["
                         + randomField.getCoordinateX() + "][" + randomField.getCoordinateY() + "], status = "
                         + randomField.getFieldStatus());
                 if ((Objects.equals(randomField.getFieldStatus(), ICoordinates.TYPE[0])) && hasEmptySpace(numberOfDecks)) {
-                    System.out.println("Корабль с " + boat.size() + " палубами построен и добавлен во флот.");
+                    System.out.println("Ship with " + boat.size() + " decks is built and added to the fleet.");
                     shipIsAdded = true;
                 }
             }
@@ -55,6 +55,7 @@ public class RandomShipPlacement {
      * Otherwise, this method returns FALSE, that means that there is no space for placing the ship.
      */
     private boolean hasEmptySpace(int rangeOfEmptyFields) {
+        int space = rangeOfEmptyFields;
         boat = new ArrayList<>();
         ArrayList<Field> visitedFieldsContainer = new ArrayList<>(100);
         boolean spaceIsFound = false;
@@ -65,21 +66,23 @@ public class RandomShipPlacement {
         int rangeUnderY = 9 - rangeAboveY;
 
         /* process of building a ship */
-        while (!spaceIsFound || (boat.size() < rangeOfEmptyFields) || (visitedFieldsContainer.size() < 100)) {
+        while (!spaceIsFound || (boat.size() < space) || (visitedFieldsContainer.size() < 100)) {
             if (visitedFieldsContainer.contains(randomField)) {
                 break;
             } else {
                 visitedFieldsContainer.add(randomField);
-                for (int i = 0; i < rangeOfEmptyFields; i++) {
-                    for (int j = 0; j < rangeOfEmptyFields; j++) {
+                space--;
+                for (int i = 0; i < space; i++) {
+                    for (int j = 0; j < space; j++) {
 
                         if (boat.size() == rangeOfEmptyFields) {
-                            System.out.println("Корабль нужного размера готов к сборке.");
+                            System.out.println("The ship is ready for addition to the fleet.");
                             spaceIsFound = true;
                             break;
                         } else {
                             if (Objects.equals(randomField.getFieldStatus(), ICoordinates.TYPE[0])) {
                                 boat.add(randomField);
+                                space--;
                                 if (rangeToTheLeftOfX > 0) {
                                     for (int k = 1; k <= rangeToTheLeftOfX; k++) {
                                         if (Objects.equals(
@@ -91,6 +94,11 @@ public class RandomShipPlacement {
                                                     ICoordinates.X[randomField.getOrderOfCoorinateX() - k],
                                                     randomField.getCoordinateY())
                                             );
+                                            space--;
+                                        }
+                                        if (boat.size() == rangeOfEmptyFields) {
+                                            spaceIsFound = true;
+                                            break;
                                         }
                                     }
                                 } else if (rangeToTheRightOfX > 0) {
@@ -105,6 +113,11 @@ public class RandomShipPlacement {
                                                             ICoordinates.X[randomField.getOrderOfCoorinateX() + f],
                                                             randomField.getCoordinateY())
                                             );
+                                            space--;
+                                        }
+                                        if (boat.size() == rangeOfEmptyFields) {
+                                            spaceIsFound = true;
+                                            break;
                                         }
                                     }
                                 } else if (rangeAboveY > 0) {
@@ -116,6 +129,11 @@ public class RandomShipPlacement {
                                             boat.add(Board.getGameboardField(randomField.getCoordinateX(),
                                                     Arrays.asList(ICoordinates.Y).indexOf(randomField.getCoordinateY()) - h)
                                             );
+                                            space--;
+                                        }
+                                        if (boat.size() == rangeOfEmptyFields) {
+                                            spaceIsFound = true;
+                                            break;
                                         }
                                     }
                                 } else if (rangeUnderY > 0) {
@@ -125,7 +143,12 @@ public class RandomShipPlacement {
                                                 ICoordinates.TYPE[0])) {
                                             boat.add(Board.getGameboardField(randomField.getCoordinateX(),
                                                     Arrays.asList(ICoordinates.Y).indexOf(randomField.getCoordinateY()) + t));
+                                            space--;
                                         }
+                                    }
+                                    if (boat.size() == rangeOfEmptyFields) {
+                                        spaceIsFound = true;
+                                        break;
                                     }
                                 }
                             }
@@ -137,15 +160,14 @@ public class RandomShipPlacement {
         visitedFieldsContainer.clear();
 
         if (boat.size() < rangeOfEmptyFields) {
-            System.err.println("Корабль не построен. Нужно искать другое свободное поле.");
+            System.err.println("The ship is not good. We have to build the new one.");
             return false;
         } else {
             for (Field deck : boat) {
-                deck.setFieldStatus(2);
-                deck.setShipID(newShipID);
+                deck.setFieldStatus(7); /*  for testing = 7, regular = 2  */
             }
 
-            System.out.println("Корабль с " + boat.size() + " палубами, добавляется к боевому флоту.");
+            System.out.println("Ship with " + boat.size() + " decks is adding to the fleet.");
             return true;
         }
     }

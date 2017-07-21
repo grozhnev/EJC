@@ -10,7 +10,8 @@ import java.util.Arrays;
  */
 public class Board {
 
-    public static Field[][] board = new Field[10][10];  // <<<< собирается сюда
+    //boats collect in here
+    public static Field[][] board = new Field[10][10];
 
     //constructor
     public Board() {

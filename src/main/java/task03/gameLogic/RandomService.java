@@ -10,7 +10,7 @@ import java.util.*;
  * Generate random logic.
  */
 public class RandomService extends Board {
-    public static int shipID = 0;
+    public static int shipID;
     private Field randomField;
     private Collection<Field> newShip = new ArrayList<>();
     private Random fortune = new Random();

@@ -33,26 +33,19 @@ public class Launch extends Board {
                         if (Player.userShots.contains(Board.gameBoard.get(inputString))) {
                             Say.tryAnotherOne();
                         } else {
-                            /* добавляем поле в userShots, чтобы исключить повторы */
+                            /* add user choice to 'userShots' to escape the endless shooting at same field */
                             Player.userShots.add(Board.gameBoard.get(inputString));
-                            //если пустой - мы промазали
                             if (Board.gameBoard.get(inputString).getFieldStatus() == ICoordinates.TYPE[0]) {
                                 Board.gameBoard.get(inputString).setFieldStatus(5);
-
-                                System.out.println("ПРОМАЗАЛИ");
-
+                                System.out.println("It was empty.");
                             } else if (Board.gameBoard.get(inputString).getFieldStatus() == ICoordinates.TYPE[1]) {
-                                // поле скрытый MARKED = 1, сначала - меняем на ложный мимо
                                 Board.gameBoard.get(inputString).setFieldStatus(3);
-
-                                System.out.println("МАРКИРОВАННОЕ");
-
+                                System.out.println("Field over the deck.");
                             } else if (Board.gameBoard.get(inputString).getFieldStatus() == ICoordinates.TYPE[2]) {
-                                int shipId = Board.gameBoard.get(inputString).getShipID();
                                 breakCycleFlag:
                                 for (Ship boat : Board.fleet) {
-                                    if (boat.shipBoats.contains(Board.gameBoard.get(inputString))) { /* мы внутри корабля */
-                                        /* мы нашли корабль (возможно shipID не нужен) */
+                                    if (boat.shipBoats.contains(Board.gameBoard.get(inputString))) {
+                                        /* we found the required ship*/
                                         for (int i = 0; i < boat.shipBoats.size(); i++) {
                                             if (boat.shipBoats.get(i).getFieldStatus() == ICoordinates.TYPE[2] &&
                                                     boat.shipBoats.get(i) != Board.gameBoard.get(inputString)) {
@@ -79,7 +72,7 @@ public class Launch extends Board {
                                                 }
                                             }
                                         }
-                                        /* удаляем корабль из флота*/
+                                        /* ship is leaving the game */
                                         fleet.remove(boat);
                                         System.out.println("Removing " + boat.toString() + " ship. ");
                                         System.out.println("Currently in 'fleet' there are " + fleet.size() + " ships.");
@@ -91,11 +84,8 @@ public class Launch extends Board {
                         Say.wrongCoordinates();
                     }
                     printTheBoard();
-                    if (fleet.size() == 0) {
-                        Player.victory = true;
-                    }
                 }
-            } while (!Player.victory);
+            } while (fleet.size() > 0);
         } catch (IOException e) {
             e.printStackTrace();
         }

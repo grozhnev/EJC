@@ -6,22 +6,22 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
- * У нас есть деньги. Мы пришли в магазин за колбасой.
- * Ввести число, сколько палок колбасы нужно купить.
- * Каждая покупка - отдельный поток.
- * Покупки происходят циклами. Какой число ввели - столько циклов.
- * Нельзя купить колбасу на сумму больше, чем в банке.
- * метод принимает число,
+ * You got the money. You came to the shop to buy some sausages.
+ * Enter the amount of sausages you want to purchase.
+ * Each purchase runs in a different thread.
+ * The whole purchasing process runs in cycle.
+ * As it happens - the input number is the amount of running cycles.
+ * You can't buy more sausages than your money allow you to do so.
  */
 
 public class SaussagePurchasing {
-    private static final int PRICE = 320;
+    private static final int PRICE = 41;
     private static int amount;
-    private static volatile int cash = 1200;
+    private static volatile int cash = 645;
 
     public static void main(String[] args) {
-        System.out.println("У вас " + cash + " рублей. Цена колбасы сегодня " + PRICE + " руб/шт.");
-        System.out.println("Сколько колбасок купить изволите ?");
+        System.out.println("You've got " + cash + " money. Sausage price today is " + PRICE + " money.");
+        System.out.println("How much sausage would you like to purchase ?");
 
         try (BufferedReader buffReader = new BufferedReader(new InputStreamReader(System.in))) {
             amount = Integer.parseInt(buffReader.readLine().trim());

@@ -3,19 +3,19 @@ package task03v2;
 /**
  * interface ICoordinates реализует общие для всех полей координаты.
  * <p>
- * МАРКИРОВКА ПОЛЕЙ:
- * Тип          Вид    Значение[номер]
- * начальный
- * '.'    пустое поле = 0
- * '.'    поле возле корабль (в скрытом режиме) = 1
- * '.'    палуба корабля (в скрытом режиме) = 2
- * промежуточный
- * '*'    поле, возле корабля после попадания (в скрытом режиме) = 3
- * '?'    попадание в палубу корабля = 4
- * конечный
- * '*'    попадание в пустое поле = 5
- * '-'    поле, возле корабля (становится видимым, если корабль убит) = 6
- * 'x'    палуба потопленного корабля = 7
+ * Meaning of the field status:
+ *   Type         View    Description/Number
+ *   primary
+ *                 .      empty field = 0
+ *                 .      field over deck of the ship (in stealth mode) = 1
+ *                 .      deck of the ship (in stealth mode) = 2
+ *   floating
+ *                 *      damaged field over deck of the ship  (in stealth mode, till the killing of the ship) = 3
+ *                 ?      damaged deck of the ship (other decks alive still remains) = 4
+ *   final
+ *                 *      empty field shot = 5
+ *                 '      field over the deck (appears after the ship is killed) = 6
+ *                 x      deck of the killed ship = 7
  */
 public interface ICoordinates {
     Character[] X = {' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
