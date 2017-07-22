@@ -12,6 +12,7 @@ import java.util.Collections;
 public class SortionTask {
     private String userInput;
     private ArrayList<Integer> inputNumbers;
+    private ArrayList<Integer> sortedList;
 
     public static void main(String[] args) {
         try (BufferedReader input = new BufferedReader(new InputStreamReader(System.in))) {
@@ -30,8 +31,9 @@ public class SortionTask {
                 }
             }
             System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
-            sortion.makeInsertionSort(sortion.inputNumbers);
+            sortion.sortedList = sortion.makeInsertionSort(sortion.inputNumbers);
             sortion.inputNumbers.clear();
+            sortion.sortedList.clear();
 
             /* QuickSort */
             System.out.println("\n\nQuick sort in action:");
@@ -46,9 +48,10 @@ public class SortionTask {
                 }
             }
             System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
-            sortion.makeQuickSort(sortion.inputNumbers, 0, sortion.inputNumbers.size() - 1);
+            sortion.sortedList = sortion.makeQuickSort(sortion.inputNumbers, 0, sortion.inputNumbers.size() - 1);
             System.out.println("Sorted list: " + sortion.inputNumbers.toString());
             sortion.inputNumbers.clear();
+            sortion.sortedList.clear();
 
             /* Java Collections Sort  */
             System.out.println("\n\nCollections sort in action:");
@@ -63,9 +66,9 @@ public class SortionTask {
                 }
             }
             System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
-            sortion.makeCollectionsSort(sortion.inputNumbers);
+            sortion.sortedList = sortion.makeCollectionsSort(sortion.inputNumbers);
             sortion.inputNumbers.clear();
-
+            sortion.sortedList.clear();
         } catch (IOException e) {
             System.err.println("Error in number input occurred.");
             e.printStackTrace();
@@ -79,7 +82,7 @@ public class SortionTask {
     /**
      * Performing insertion sort.
      */
-    void makeInsertionSort(ArrayList<Integer> numbers) {
+    ArrayList<Integer> makeInsertionSort(ArrayList<Integer> numbers) {
         int temp;
         int sortInterator;
 
@@ -98,12 +101,13 @@ public class SortionTask {
             }
         }
         System.out.print("\nSorted integers list: " + numbers.toString());
+        return numbers;
     }
 
     /**
      * Performing Quick sort.
      */
-    void makeQuickSort(ArrayList<Integer> numbers, int first, int last) {
+    ArrayList<Integer> makeQuickSort(ArrayList<Integer> numbers, int first, int last) {
         int leftIndex = first;
         int middle = numbers.get(first + (last - first) / 2);
         int rightIndex = last;
@@ -133,14 +137,16 @@ public class SortionTask {
         if (first < rightIndex) {
             makeQuickSort(numbers, first, rightIndex);
         }
+        return numbers;
     }
 
     /**
      * Performing Collections sort.
      */
-    void makeCollectionsSort(ArrayList<Integer> numbers) {
+    ArrayList<Integer> makeCollectionsSort(ArrayList<Integer> numbers) {
         System.out.print("Performing Collections sort.");
         Collections.sort(numbers);
         System.out.print("\nSorted list of numbers" + numbers.toString());
+        return numbers;
     }
 }
