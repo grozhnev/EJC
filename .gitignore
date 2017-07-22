@@ -4,3 +4,4 @@
  target/
 #src/test/
 
+!/src/test/java/task07/SortionTaskTest.java
