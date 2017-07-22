@@ -9,4 +9,4 @@ Contents:
   - <a href="https://github.com/grozhnev/EpamJavaCore/tree/master/src/main/java/task04"> task04 </a> (ClassWork: Zlatopolsy tasks #9.43 and #9.116. Working with Strings.)
   - <a href="https://github.com/grozhnev/EpamJavaCore/tree/master/src/main/java/task04"> task05 </a> (ClassWork: Zlatopolsy tasks #9.153 and #9.154.)
   - <a href="https://github.com/grozhnev/EJC/tree/master/src/main/java/task06"> task06 </a> (ClassWork: Multi-Threading) 
-  - <a href="https://github.com/grozhnev/EJC/tree/master/src/main/java/task07"> task07 </a> (ClassWork: Insertion Sort, Quick Sort and Collections Sort (as bonus).) 
+  - <a href="https://github.com/grozhnev/EJC/tree/master/src/main/java/task07"> task07 </a> (ClassWork: Insertion Sort, Quick Sort and Collections Sort (as bonus). 
