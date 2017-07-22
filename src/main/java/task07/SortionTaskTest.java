@@ -2,7 +2,6 @@ package task07;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.ArrayList;
 
 /**
@@ -48,6 +47,7 @@ public class SortionTaskTest {
         for (int i = 0; i < sortedNumbers.length; i++) {
             sortedArray.add(sortedNumbers[i]);
         }
+        
         /* perform test */
         Assert.assertEquals("Wrong result of Quick sort", sortedArray, sort.makeQuickSort(array, 0, array.size() - 1));
     }
