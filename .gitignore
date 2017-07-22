@@ -1,17 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
  .idea/
- build/
  *.iml
- out
- gen
  target/
-.build
-.idea/EpamJavaCore.iml
-.idea/copyright/
-.idea/misc.xml
-.idea/modules.xml
-.idea/workspace.xml
-out/
 src/test/
-.iml
-/.iml
+

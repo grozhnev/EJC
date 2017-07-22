@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Release of Insertion Sort, Quick Sort and Collections Sort (as bonus). 
+ * Release of Insertion Sort, Quick Sort and Collections Sort (as bonus).
  */
 public class SortionTask {
     private String userInput;
