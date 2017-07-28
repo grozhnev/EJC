@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * class: BubbleAndMergeSortWithBinarySearch
+ * class: BubbleAndMergeSort
  * version: 0.3
  * <p>
  * Created by: Georgii Rozhnev, https://github.com/grozhnev
@@ -20,9 +20,9 @@ import java.util.Random;
  * Each sort result is covered with JUnit tests. java code.
  * After that we use binary search in sorted list of elements.
  */
-public class BubbleAndMergeSortWithBinarySearch {
+public class BubbleAndMergeSort {
     public static void main(String[] args) {
-        BubbleAndMergeSortWithBinarySearch sort = new BubbleAndMergeSortWithBinarySearch();
+        BubbleAndMergeSort sort = new BubbleAndMergeSort();
         int capacityForBubbleSort = -1;
         int capacityForMergeSort = -1;
         int numberInBubbleSortedList = -1;

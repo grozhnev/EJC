@@ -9,14 +9,14 @@ import java.util.Collections;
 /**
  * Release of Insertion Sort, Quick Sort and Collections Sort (as bonus).
  */
-public class SortionTask {
+public class InsertionAndQuickSort {
     private String userInput;
     private ArrayList<Integer> inputNumbers;
     private ArrayList<Integer> sortedList;
 
     public static void main(String[] args) {
         try (BufferedReader input = new BufferedReader(new InputStreamReader(System.in))) {
-            SortionTask sortion = new SortionTask();
+            InsertionAndQuickSort sortion = new InsertionAndQuickSort();
             sortion.inputNumbers = new ArrayList<>();
 
             /* Insertion Sort */
