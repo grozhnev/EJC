@@ -18,57 +18,9 @@ public class InsertionAndQuickSort {
         try (BufferedReader input = new BufferedReader(new InputStreamReader(System.in))) {
             InsertionAndQuickSort sortion = new InsertionAndQuickSort();
             sortion.inputNumbers = new ArrayList<>();
-
-            /* Insertion Sort */
-            System.out.println("Enter 5 numbers: ");
-            for (int i = 5; i > 0; i--) {
-                sortion.userInput = input.readLine().replaceAll("[^\\d.]", "");
-                if (sortion.userInput.length() == 0) {
-                    System.err.println("You didn't enter the number");
-                } else {
-                    sortion.inputNumbers.add(Integer.parseInt(sortion.userInput));
-                    System.out.println((i - 1) + " numbers left for input.");
-                }
-            }
-            System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
-            sortion.sortedList = sortion.makeInsertionSort(sortion.inputNumbers);
-            sortion.inputNumbers.clear();
-            sortion.sortedList.clear();
-
-            /* QuickSort */
-            System.out.println("\n\nQuick sort in action:");
-            System.out.println("Enter 6 numbers: ");
-            for (int k = 6; k > 0; k--) {
-                sortion.userInput = input.readLine().replaceAll("[^\\d.]", "");
-                if (sortion.userInput.length() == 0) {
-                    System.err.println("You didn't enter the number");
-                } else {
-                    sortion.inputNumbers.add(Integer.parseInt(sortion.userInput));
-                    System.out.println((k - 1) + " numbers left for input.");
-                }
-            }
-            System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
-            sortion.sortedList = sortion.makeQuickSort(sortion.inputNumbers, 0, sortion.inputNumbers.size() - 1);
-            System.out.println("Sorted list: " + sortion.inputNumbers.toString());
-            sortion.inputNumbers.clear();
-            sortion.sortedList.clear();
-
-            /* Java Collections Sort  */
-            System.out.println("\n\nCollections sort in action:");
-            System.out.println("Enter 7 numbers: ");
-            for (int j = 7; j > 0; j--) {
-                sortion.userInput = input.readLine().replaceAll("[^\\d.]", "");
-                if (sortion.userInput.length() == 0) {
-                    System.err.println("You didn't enter the number");
-                } else {
-                    sortion.inputNumbers.add(Integer.parseInt(sortion.userInput));
-                    System.out.println((j - 1) + " numbers left for input.");
-                }
-            }
-            System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
-            sortion.sortedList = sortion.makeCollectionsSort(sortion.inputNumbers);
-            sortion.inputNumbers.clear();
-            sortion.sortedList.clear();
+            doInsertionSort(input, sortion);
+            doQuickSort(input, sortion);
+            doDefaultSortion(input, sortion);
         } catch (IOException e) {
             System.err.println("Error in number input occurred.");
             e.printStackTrace();
@@ -77,6 +29,63 @@ public class InsertionAndQuickSort {
                     Integer.MAX_VALUE + "].");
             e.printStackTrace();
         }
+    }
+
+    static void doDefaultSortion(BufferedReader input, InsertionAndQuickSort sortion) throws IOException {
+    /* Java Collections Sort  */
+        System.out.println("\n\nCollections sort in action:");
+        System.out.println("Enter 7 numbers: ");
+        for (int j = 7; j > 0; j--) {
+            sortion.userInput = input.readLine().replaceAll("[^\\d.]", "");
+            if (sortion.userInput.length() == 0) {
+                System.err.println("You didn't enter the number");
+            } else {
+                sortion.inputNumbers.add(Integer.parseInt(sortion.userInput));
+                System.out.println((j - 1) + " numbers left for input.");
+            }
+        }
+        System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
+        sortion.sortedList = sortion.makeCollectionsSort(sortion.inputNumbers);
+        sortion.inputNumbers.clear();
+        sortion.sortedList.clear();
+    }
+
+    static void doQuickSort(BufferedReader input, InsertionAndQuickSort sortion) throws IOException {
+    /* QuickSort */
+        System.out.println("\n\nQuick sort in action:");
+        System.out.println("Enter 6 numbers: ");
+        for (int k = 6; k > 0; k--) {
+            sortion.userInput = input.readLine().replaceAll("[^\\d.]", "");
+            if (sortion.userInput.length() == 0) {
+                System.err.println("You didn't enter the number");
+            } else {
+                sortion.inputNumbers.add(Integer.parseInt(sortion.userInput));
+                System.out.println((k - 1) + " numbers left for input.");
+            }
+        }
+        System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
+        sortion.sortedList = sortion.makeQuickSort(sortion.inputNumbers, 0, sortion.inputNumbers.size() - 1);
+        System.out.println("Sorted list: " + sortion.inputNumbers.toString());
+        sortion.inputNumbers.clear();
+        sortion.sortedList.clear();
+    }
+
+    static void doInsertionSort(BufferedReader input, InsertionAndQuickSort sortion) throws IOException {
+    /* Insertion Sort */
+        System.out.println("Enter 5 numbers: ");
+        for (int i = 5; i > 0; i--) {
+            sortion.userInput = input.readLine().replaceAll("[^\\d.]", "");
+            if (sortion.userInput.length() == 0) {
+                System.err.println("You didn't enter the number");
+            } else {
+                sortion.inputNumbers.add(Integer.parseInt(sortion.userInput));
+                System.out.println((i - 1) + " numbers left for input.");
+            }
+        }
+        System.out.println("\nUnsorted list of integers " + sortion.inputNumbers.toString());
+        sortion.sortedList = sortion.makeInsertionSort(sortion.inputNumbers);
+        sortion.inputNumbers.clear();
+        sortion.sortedList.clear();
     }
 
     /**

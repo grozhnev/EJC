@@ -9,44 +9,50 @@ import java.io.InputStreamReader;
  */
 class SearcherOfLongestSameCharSequence {
     public static void main(String[] args) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            searchLongestSequence(reader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void searchLongestSequence(BufferedReader reader) throws IOException {
         int maxLength = 0;
         String sequence = "";
         StringBuilder moreThanOneSequence = new StringBuilder();
         StringBuffer builder = new StringBuffer();
 
-        System.out.println("Введите текст");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            String input = reader.readLine();
-            char[] charString = input.toCharArray();
-            for (int i = 0; i < charString.length - 1; i++) {
-                if (charString[i] == charString[i + 1]) {
-                    builder.append(charString[i]);
-                } else if (charString[i] == charString[i - 1]){
-                    builder.append(charString[i]);
-                    if (builder.length() > maxLength) {
-                        sequence = builder.toString();
-                        maxLength = sequence.length();
-                        builder = new StringBuffer();
-                    } else if (builder.length() == maxLength) {
-                        System.out.println("В строке несколько одинаковых по длине последоватедьностей " +
-                                                                                                "одинаковых символов");
-                        String secondSequence = builder.toString();
-                        moreThanOneSequence.append(sequence).append(" и ").append(secondSequence);
+        System.out.println("Enter some text: ");
+        String input = reader.readLine();
+        char[] charString = input.toCharArray();
 
-                    } else {
-                        builder = new StringBuffer();
-                    }
+        for (int i = 0; i < charString.length - 1; i++) {
+            if (charString[i] == charString[i + 1]) {
+                builder.append(charString[i]);
+            }  else if (maxLength == 0) {
+                System.err.println("\nNo sequence of equal symbols in text!!!");
+                break;
+            }else if (charString[i] == charString[i - 1]){
+                builder.append(charString[i]);
+                if (builder.length() > maxLength) {
+                    sequence = builder.toString();
+                    maxLength = sequence.length();
+                    builder = new StringBuffer();
+                } else if (builder.length() == maxLength) {
+                    System.out.println("There is more then one longest sequences of the same symbols.");
+                    String secondSequence = builder.toString();
+                    moreThanOneSequence.append(sequence).append(" и ").append(secondSequence);
+                } else {
+                    builder = new StringBuffer();
                 }
             }
-            if (moreThanOneSequence.toString().length() != 0) {
-                System.out.println("Последовательности из " + maxLength + " одинаковых символов : \""
-                                                                                        + moreThanOneSequence + "\"");
-            } else {
-                System.out.print("Самая длинная последовательность из " + maxLength + " символов в " +
-                                                                             "введенной строке : \"" + sequence + "\"");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        }
+        if (moreThanOneSequence.toString().length() != 0) {
+            System.out.println("Longest sequences have " + maxLength + " equal symbols : \""
+                                                                                    + moreThanOneSequence + "\"");
+        } else {
+            System.out.print("In entered text there is a sequence of " + maxLength + " equal symbols : \""
+                                                                                                + sequence + "\"");
         }
     }
 }

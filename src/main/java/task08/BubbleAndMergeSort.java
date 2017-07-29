@@ -27,8 +27,6 @@ public class BubbleAndMergeSort {
         int capacityForMergeSort = -1;
         int numberInBubbleSortedList = -1;
         int numberInMergeSortedList = -1;
-        int positionInBubbleSortedList;
-        int positionInMergeSortedList;
         boolean correctInputFormat = false;
 
         ArrayList<Integer> listSortedWithBubbleSort;
@@ -38,86 +36,111 @@ public class BubbleAndMergeSort {
 
         try (BufferedReader buff = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Only numbers accepted s input. Letters and empty spaces are being skipped.\n");
-
-             /* make bubble sort */
-            System.out.print("What is the capacity for the new list of unsorted numbers?");
-            do {
-                String inputString = buff.readLine().trim().replaceAll("[^\\d.]", "");
-                if (inputString.length() > 0) {
-                    capacityForBubbleSort = Integer.parseInt(inputString);
-                    System.out.println("Input \"" + capacityForBubbleSort + "\" accepted.");
-                    correctInputFormat = true;
-                } else {
-                    System.err.println("Incorrect input format! Try again.");
-                }
-            } while (!correctInputFormat);
-            listOfNumbers.addAll(sort.createListOfNumbers(capacityForBubbleSort));
-            System.out.println("\nHere is unsorted list: " + listOfNumbers);
-            listSortedWithBubbleSort = sort.performBubbleSort(listOfNumbers);
-            System.out.println("Sorted with BubbleSort: " + listSortedWithBubbleSort);
-
-            /* make merge sort */
-            System.out.print("\nEnter the capacity for MergeSort:");
-            correctInputFormat = false;
-            do {
-                String inputString = buff.readLine().trim().replaceAll("[^\\d.]", "");
-                if (inputString.length() > 0) {
-                    capacityForMergeSort = Integer.parseInt(inputString);
-                    System.out.println("Input \"" + capacityForMergeSort + "\" accepted.");
-                    correctInputFormat = true;
-                } else {
-                    System.err.println("Incorrect input format! Try again.");
-                }
-            } while (!correctInputFormat);
-            otherListOfNumbers.addAll(sort.createListOfNumbers(capacityForMergeSort));
-            System.out.println("Unsorted list2 : " + otherListOfNumbers);
-            listSortedWithMergeSort = new ArrayList<>(otherListOfNumbers);
-            sort.performMergeSort(listSortedWithMergeSort, 0, listSortedWithMergeSort.size() - 1);
-            System.out.println("Sorted with MergeSort: " + listSortedWithMergeSort);
-
-            /* binary search in Bubble sorted list */
-            System.out.print("\nWhat is the number you are looking for in the first sorted list? ");
-            correctInputFormat = false;
-            do {
-                String inputString = buff.readLine().trim().replaceAll("[^\\d.]", "");
-                if (inputString.length() > 0) {
-                    numberInBubbleSortedList = Integer.parseInt(inputString);
-                    System.out.println("Input \"" + numberInBubbleSortedList + "\" accepted.");
-                    correctInputFormat = true;
-                } else {
-                    System.err.println("Incorrect input format! Try again.");
-                }
-            } while (!correctInputFormat);
-            positionInBubbleSortedList = sort.performBinarySearch(listSortedWithBubbleSort, numberInBubbleSortedList);
-            if (positionInBubbleSortedList != -1) {
-                System.out.println("Index of searching element in list is " + (positionInBubbleSortedList + 1));
-            } else {
-                System.out.println("Number " + numberInBubbleSortedList + " is not in the list!");
-            }
-
-            /* binary search in Merge sorted list */
-            System.out.print("\nThan what is the number you are looking for in the second sorted list? ");
-            correctInputFormat = false;
-            do {
-                String inputString = buff.readLine().trim().replaceAll("[^\\d.]", "");
-                if (inputString.length() > 0) {
-                    numberInMergeSortedList = Integer.parseInt(inputString);
-                    System.out.println("Input \"" + numberInMergeSortedList + "\" accepted.");
-                    correctInputFormat = true;
-                } else {
-                    System.err.println("Incorrect input format! Try again.");
-                }
-            } while (!correctInputFormat);
-
-            positionInMergeSortedList = sort.performBinarySearch(listSortedWithMergeSort, numberInMergeSortedList);
-            if (positionInMergeSortedList != -1) {
-                System.out.println("Index of searching element in list is " + (positionInMergeSortedList + 1));
-            } else {
-                System.out.println("Number " + numberInMergeSortedList + " is not in the list!");
-            }
+            listSortedWithBubbleSort = doBubbleSort(sort, capacityForBubbleSort, correctInputFormat, listOfNumbers, buff);
+            listSortedWithMergeSort = doMergeSort(sort, capacityForMergeSort, otherListOfNumbers, buff);
+            makeBinarySearchInBubblesortedList(sort, numberInBubbleSortedList, listSortedWithBubbleSort, buff);
+            makeBinarySearchInMergesortedList(sort, numberInMergeSortedList, listSortedWithMergeSort, buff);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    static void makeBinarySearchInMergesortedList(BubbleAndMergeSort sort, int numberInMergeSortedList,
+                                                  ArrayList<Integer> listSortedWithMergeSort, BufferedReader buff)
+            throws IOException {
+        boolean correctInputFormat;
+        int positionInMergeSortedList;/* binary search in Merge sorted list */
+        System.out.print("\nThan what is the number you are looking for in the second sorted list? ");
+        correctInputFormat = false;
+        do {
+            String inputString = buff.readLine().trim().replaceAll("[^\\d.]", "");
+            if (inputString.length() > 0) {
+                numberInMergeSortedList = Integer.parseInt(inputString);
+                System.out.println("Input \"" + numberInMergeSortedList + "\" accepted.");
+                correctInputFormat = true;
+            } else {
+                System.err.println("Incorrect input format! Try again.");
+            }
+        } while (!correctInputFormat);
+
+        positionInMergeSortedList = sort.performBinarySearch(listSortedWithMergeSort, numberInMergeSortedList);
+        if (positionInMergeSortedList != -1) {
+            System.out.println("Index of searching element in list is " + (positionInMergeSortedList + 1));
+        } else {
+            System.out.println("Number " + numberInMergeSortedList + " is not in the list!");
+        }
+    }
+
+    static void makeBinarySearchInBubblesortedList(BubbleAndMergeSort sort, int numberInBubbleSortedList,
+                                                   ArrayList<Integer> listSortedWithBubbleSort, BufferedReader buff)
+            throws IOException {
+        boolean correctInputFormat;
+        int positionInBubbleSortedList;/* binary search in Bubble sorted list */
+        System.out.print("\nWhat is the number you are looking for in the first sorted list? ");
+        correctInputFormat = false;
+        do {
+            String inputString = buff.readLine().trim().replaceAll("[^\\d.]", "");
+            if (inputString.length() > 0) {
+                numberInBubbleSortedList = Integer.parseInt(inputString);
+                System.out.println("Input \"" + numberInBubbleSortedList + "\" accepted.");
+                correctInputFormat = true;
+            } else {
+                System.err.println("Incorrect input format! Try again.");
+            }
+        } while (!correctInputFormat);
+        positionInBubbleSortedList = sort.performBinarySearch(listSortedWithBubbleSort, numberInBubbleSortedList);
+        if (positionInBubbleSortedList != -1) {
+            System.out.println("Index of searching element in list is " + (positionInBubbleSortedList + 1));
+        } else {
+            System.out.println("Number " + numberInBubbleSortedList + " is not in the list!");
+        }
+    }
+
+    static ArrayList<Integer> doMergeSort(BubbleAndMergeSort sort, int capacityForMergeSort,
+                                          ArrayList<Integer> otherListOfNumbers, BufferedReader buff)
+            throws IOException {
+        boolean correctInputFormat;
+        ArrayList<Integer> listSortedWithMergeSort;/* make merge sort */
+        System.out.print("\nEnter the capacity for MergeSort:");
+        correctInputFormat = false;
+        do {
+            String inputString = buff.readLine().trim().replaceAll("[^\\d.]", "");
+            if (inputString.length() > 0) {
+                capacityForMergeSort = Integer.parseInt(inputString);
+                System.out.println("Input \"" + capacityForMergeSort + "\" accepted.");
+                correctInputFormat = true;
+            } else {
+                System.err.println("Incorrect input format! Try again.");
+            }
+        } while (!correctInputFormat);
+        otherListOfNumbers.addAll(sort.createListOfNumbers(capacityForMergeSort));
+        System.out.println("Unsorted list2 : " + otherListOfNumbers);
+        listSortedWithMergeSort = new ArrayList<>(otherListOfNumbers);
+        sort.performMergeSort(listSortedWithMergeSort, 0, listSortedWithMergeSort.size() - 1);
+        System.out.println("Sorted with MergeSort: " + listSortedWithMergeSort);
+        return listSortedWithMergeSort;
+    }
+
+    static ArrayList<Integer> doBubbleSort(BubbleAndMergeSort sort, int capacityForBubbleSort,
+                                           boolean correctInputFormat, ArrayList<Integer> listOfNumbers,
+                                           BufferedReader buff) throws IOException {
+        ArrayList<Integer> listSortedWithBubbleSort;/* make bubble sort */
+        System.out.print("What is the capacity for the new list of unsorted numbers?");
+        do {
+            String inputString = buff.readLine().trim().replaceAll("[^\\d.]", "");
+            if (inputString.length() > 0) {
+                capacityForBubbleSort = Integer.parseInt(inputString);
+                System.out.println("Input \"" + capacityForBubbleSort + "\" accepted.");
+                correctInputFormat = true;
+            } else {
+                System.err.println("Incorrect input format! Try again.");
+            }
+        } while (!correctInputFormat);
+        listOfNumbers.addAll(sort.createListOfNumbers(capacityForBubbleSort));
+        System.out.println("\nHere is unsorted list: " + listOfNumbers);
+        listSortedWithBubbleSort = sort.performBubbleSort(listOfNumbers);
+        System.out.println("Sorted with BubbleSort: " + listSortedWithBubbleSort);
+        return listSortedWithBubbleSort;
     }
 
     /**

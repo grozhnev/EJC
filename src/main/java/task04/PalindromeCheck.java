@@ -17,6 +17,32 @@ import java.util.ArrayList;
 class PalindromeCheck {
 
     public static void main(String[] args) {
+        checkTaskTextOnPalindrome();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+            checkUserInputTextAsPalindrome(reader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void checkUserInputTextAsPalindrome(BufferedReader reader) throws IOException {
+        StringBuilder builder = new StringBuilder();
+        String inputString;
+        while (true) {
+            System.out.print("\nEnter some text: ");
+            inputString = reader.readLine().replaceAll(" ", "");
+            builder.append(inputString).reverse();
+
+            if (inputString.equals(builder.toString())) {
+                System.out.println("Text \"" + inputString + "\" is palindrome.");
+            } else {
+                System.out.println("Text \"" + inputString + "\" is NOT a palindrome.");
+            }
+            builder = new StringBuilder();
+        }
+    }
+
+    static void checkTaskTextOnPalindrome() {
         String check1 = "АРГЕНТИНА МАНИТ НЕГРА";
         String check2 = "ПОТ КАК ПОТОП";
         String check3 = "А РОЗА УПАЛА НА ЛАПУ АЗОРА";
@@ -34,30 +60,13 @@ class PalindromeCheck {
             builder = builder.append(inputString).reverse();
 
             if (inputString.equals(builder.toString())) {
-                System.out.println("Строка \"" + z + "\" является палиндромом.");
+                System.out.println("Text \"" + z + "\" is palindrome.");
             } else {
-                System.out.println("Строка \"" + z + "\" НЕ палиндромом.");
+                System.out.println("Text \"" + z + "\" is NOT a palindrome.");
             }
 
             builder = new StringBuilder();
         }
-
-        System.out.print("\nA теперь, проверете текст на палиндромность.");
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            while (true) {
-                System.out.print("\nВведите слово или строку: ");
-                inputString = reader.readLine().replaceAll(" ", "");
-                builder = builder.append(inputString).reverse();
-
-                if (inputString.equals(builder.toString())) {
-                    System.out.println("Строка \"" + inputString + "\" является полиндоромом.");
-                } else {
-                    System.out.println("Строка \"" + inputString + "\" НЕ аявляется полиндоромом.");
-                }
-                builder = new StringBuilder();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.print("\nNow, you can check any other text for being palindrome.");
     }
 }
