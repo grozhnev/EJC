@@ -42,7 +42,6 @@ public class SelectionAndRadixSort {
      * @param buff
      * @throws IOException
      */
-
     void launchSelectionSort(SelectionAndRadixSort sort, BufferedReader buff) throws IOException {
         System.out.print("Enter the amount of number for unsorted list: ");
         do {
@@ -63,7 +62,6 @@ public class SelectionAndRadixSort {
         System.out.println("Here we got the list of numbers, sorted with Selection sort:\n" + sort.numbersSortedWithSelectionSort);
     }
 
-
     public ArrayList<Integer> performSelectionSort(ArrayList<Integer> unsortedNumbers) {
         ArrayList<Integer> sortedNumbers = new ArrayList<>(unsortedNumbers);
 
@@ -77,7 +75,6 @@ public class SelectionAndRadixSort {
                     smallestValue = sortedNumbers.get(secondCycle);
                 }
             }
-            /* replacing*/
             int temp = sortedNumbers.get(firstCycle);
             sortedNumbers.set(firstCycle, smallestValue);
             sortedNumbers.set(smallestNumber, temp);
