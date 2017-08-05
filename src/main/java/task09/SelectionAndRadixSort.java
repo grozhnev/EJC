@@ -75,7 +75,6 @@ public class SelectionAndRadixSort {
                     smallestValue = sortedNumbers.get(secondCycle);
                 }
             }
-            /* replacing*/
             int temp = sortedNumbers.get(firstCycle);
             sortedNumbers.set(firstCycle, smallestValue);
             sortedNumbers.set(smallestNumber, temp);
