@@ -11,3 +11,6 @@ Contents:
   - <a href="https://github.com/grozhnev/EJC/tree/master/src/main/java/task07"> task07 </a> (Insertion Sort, Quick Sort and Collections Sort. JUnit tests). 
   - <a href="https://github.com/grozhnev/EJC/tree/master/src/main/java/task08"> task08 </a> (Bubble Sort, Merge Sort. JUnit tests). 
   - <a href="https://github.com/grozhnev/EJC/tree/master/src/main/java/task09"> task09 </a> (Selection Sort, Radix Sort).   
+  - <a href="https://github.com/grozhnev/EJC/tree/master/src/main/java/task10"> task10 </a> (ClassWork: Multi-Threading: wait(), join(), synchronized key, notifyAll() and yield() ).   
+
+
