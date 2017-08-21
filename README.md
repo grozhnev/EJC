@@ -1,6 +1,6 @@
 # EpamJavaCore
-####This repository contains applications from Java training course.
-####Contents:
+#### This repository contains applications from Java training course.
+#### Contents:
   - <a href="https://github.com/grozhnev/EJC/tree/master/src/main/java/task01"> task01 </a> (simple java class + HelloWorld *.class and *.java files)
   - <a href="https://github.com/grozhnev/EpamJavaCore/tree/master/src/main/java/task02"> task02 </a> (Duck Casino)
   - <a href="https://github.com/grozhnev/EpamJavaCore/tree/master/src/main/java/task03v3"> task03 </a> (BattleShip game)
